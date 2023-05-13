@@ -1,0 +1,70 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint"],
+    "rules": {
+        "eqeqeq": "error",
+        "no-console": "off",
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "prefer-destructuring": [
+            "error",
+            {
+                "VariableDeclarator": {
+                    "object": true
+                }
+            }
+        ],
+        "consistent-return": [
+            "error",
+            {
+                "treatUndefinedAsUnspecified": true
+            }
+        ],
+        "prefer-template": "error",
+        "object-shorthand": "error",
+        "prettier/prettier": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-misused-promises": [
+            "error",
+            {
+                "checksVoidReturn": false
+            }
+        ],
+        "@typescript-eslint/require-await": "error",
+        "react/display-name": "off",
+        "react/no-children-prop": "off",
+        "react/react-in-jsx-scope": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "project": ["tsconfig.json"],
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "jest": true
+    },
+    "ignorePatterns": ["node_modules", "build", "dist", "public"]
+}

@@ -32,6 +32,7 @@ buildscript {
 
   dependencies {
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${getKotlinVersion()}")
+    implementation project('com.tink:link-ui:2.1.0')
   }
 }
 
