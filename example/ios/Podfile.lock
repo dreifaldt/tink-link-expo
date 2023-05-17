@@ -1,6 +1,7 @@
 PODS:
   - boost (1.76.0)
   - DoubleConversion (1.1.6)
+  - Down (0.11.0)
   - EXApplication (5.1.1):
     - ExpoModulesCore
   - EXConstants (14.2.1):
@@ -9,7 +10,7 @@ PODS:
     - ExpoModulesCore
   - EXFont (11.1.1):
     - ExpoModulesCore
-  - Expo (48.0.16):
+  - Expo (48.0.17):
     - ExpoModulesCore
   - ExpoKeepAwake (12.0.1):
     - ExpoModulesCore
@@ -366,8 +367,15 @@ PODS:
     - React-jsi (= 0.71.7)
     - React-logger (= 0.71.7)
     - React-perflogger (= 0.71.7)
+  - TinkCore (1.10.0)
+  - TinkLink (1.7.1):
+    - TinkCore (~> 1.7)
   - TinkLinkExpo (0.1.0):
     - ExpoModulesCore
+    - TinkLinkUI
+  - TinkLinkUI (1.7.1):
+    - Down (~> 0.9)
+    - TinkLink (= 1.7.1)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -418,8 +426,12 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Down
     - fmt
     - libevent
+    - TinkCore
+    - TinkLink
+    - TinkLinkUI
 
 EXTERNAL SOURCES:
   boost:
@@ -510,11 +522,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
+  Down: b6ba1bc985c9d2f4e15e3b293d2207766fa12612
   EXApplication: d8f53a7eee90a870a75656280e8d4b85726ea903
   EXConstants: f348da07e21b23d2b085e270d7b74f282df1a7d9
   EXFileSystem: 844e86ca9b5375486ecc4ef06d3838d5597d895d
   EXFont: 6ea3800df746be7233208d80fe379b8ed74f4272
-  Expo: b1457fbd549c00d17b62c402bc98c8229aace6d8
+  Expo: d351b4546895fb99ae4e5a1bc39df770ab9dc7d1
   ExpoKeepAwake: 69f5f627670d62318410392d03e0b5db0f85759a
   ExpoModulesCore: 653958063a301098b541ae4dfed1ac0b98db607b
   FBLazyVector: a89a0525bc7ca174675045c2b492b5280d5a2470
@@ -550,7 +563,10 @@ SPEC CHECKSUMS:
   React-RCTVibration: 08f132cad9896458776f37c112e71d60aef1c6ae
   React-runtimeexecutor: c5c89f8f543842dd864b63ded1b0bbb9c9445328
   ReactCommon: dbfbe2f7f3c5ce4ce44f43f2fd0d5950d1eb67c5
-  TinkLinkExpo: 3d4bc57d0f7e4df836ad02cbe0f2693f170f9ed6
+  TinkCore: c701638df5e7cdc97cc348f68b1a6f8bed9bd381
+  TinkLink: 00a361848c7e423c7d4c9ddef9a9b1aea7d2eb4b
+  TinkLinkExpo: 4d6e63e97c2b436895b6384455af317caf333191
+  TinkLinkUI: 3fed58d98d18c4bed6eba127c64a4c8591a2e8a2
   Yoga: d56980c8914db0b51692f55533409e844b66133c
 
 PODFILE CHECKSUM: 8e07b56a03f34fd350b829fc99e1cc1bf3206b0a
