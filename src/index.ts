@@ -2,6 +2,11 @@
 // and on native platforms to TinkLinkExpo.ts
 import TinkLinkExpoModule from './TinkLinkExpoModule'
 
-export function hello(): string {
-    return TinkLinkExpoModule.hello()
+export function initTinkLink(
+    clientId: string,
+    appURI: string,
+    scopes?: string[],
+    market?: string
+): void {
+    return TinkLinkExpoModule.init(clientId, appURI, scopes, market)
 }

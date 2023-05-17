@@ -1,23 +1,34 @@
 package expo.modules.tinklinkexpo
 
+import android.content.Context
+import android.content.Intent
+import com.tink.link.ui.LinkActivity
+import com.tink.link.ui.TinkLinkUI
+import com.tink.model.user.Scope
+import expo.modules.core.Promise
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
-import com.tink:link-ui.TinkLinkUI
+import expo.modules.kotlin.modules.Name
+import expo.modules.kotlin.modules.AsyncFunction
+import java.net.URL
 
 class TinkLinkExpoModule : Module() {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
-  override fun definition() = ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('TinkLinkExpo')` in JavaScript.
-    Name("TinkLinkExpo")
+    override fun definition(): ModuleDefinition = ModuleDefinition.async {
+        Name("TinkLinkExpo")
 
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("tinkLinkInit") {
-      return "Hello world! 👋"
-      }
+        Function("init") { clientId: String, appURI: String, scopes: List<String>?, market: String? ->
+            val context = moduleRegistryDelegate.context
+            val linkHandle = TinkLinkUI.create(context)
+                .linkHandle(clientId)
+                .appUri(URL(appURI))
+                .market(market)
+                .scopes(scopes?.map { Scope.valueOf(it.toUpperCase()) } ?: emptyList())
+                .build()
 
-  }
+            val intent = LinkActivity.createIntent(context, linkHandle)
+            getCurrentActivity()?.startActivityForResult(intent, 1)
+
+            null
+        }
+    }
 }

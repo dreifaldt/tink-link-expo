@@ -1,21 +1,43 @@
 import ExpoModulesCore
-import Tink
-
+import TinkLinkUI
 
 public class TinkLinkExpoModule: Module {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
-  public func definition() -> ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('TinkLinkExpo')` in JavaScript.
-    Name("TinkLinkExpo")
+    public func definition() -> ModuleDefinition {
+        Name("TinkLinkExpo")
 
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("tinkLinkInit") {
-      return "Hello world! 👋"
+        Function("init") { (clientId: String, appURI: String, scopes: [String]?, market: String?) -> Void in
+            guard let appURI = URL(string: appURI) else {
+                print("Invalid app URI")
+                return
+            }
+
+            let configuration = TinkLinkConfiguration(clientID: clientId, appURI: appURI)
+            let linkHandler = TinkLinkHandler(configuration: configuration)
+
+            var accessTypes = [String]()
+            for scope in scopes {
+                switch scope {
+                case "accounts.read":
+                    accessTypes.append(.accounts(.read))
+                case "accounts.write":
+                    accessTypes.append(.accounts(.write))
+                case "transactions.read":
+                    accessTypes.append(.transactions(.read))
+                case "transactions.write":
+                    accessTypes.append(.transactions(.write))
+                default:
+                    print("Unknown scope: \(scope)")
+                }
+            }
+
+            let tinkLinkViewController = TinkLinkViewController(configuration: configuration, market: market,scopes: accessTypes) { result in
+                // Handle result
+                print(result)
+            }
+
+            UIApplication.shared.windows.first?.rootViewController?.present(tinkLinkViewController, animated: true)
+
+            return ()
+        }
     }
-
-  }
 }
